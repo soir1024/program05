@@ -61,11 +61,42 @@ Issues:
 '''
 
 def getPrincipal(limit):
-    #prinVal = >0 and <=(limit)
-    print(f' Enter the principal (limit {limit}):')
-    pincipalInput = input()
-    if not isinstance(limit,(int,float):
-           raise ValueError()         
+    while True:
+        
+        print(f' Enter the principal (limit {limit}):')
+        principalInput = input()
+        
+        if principalInput[0] == '$':
+            principalInput = principalInput.replace('$','')
+        
+        if not isinstance(limit, (int,float)):
+            raise TypeError ('getPrincipal(limit): number must be numeric')
+        if principalInput < 0:
+            print ('You must enter a nonnegative number.')
+        if principalInput > limit:
+            print (f'Principal can not be more than {limit}.')
+        #if principalInput != (f'{:.2f}'):
+            #print ('Please enter number with 2 decimal places.')
+        elif principalNum >= 0 and principalNum <= limit:
+            return principalNum
+        
+        # try:
+        #     principalNum = int(principalInput)
+        #     if principalNum < 0:
+        #         print ('You must enter a nonnegative number')
+        #     elif principalNum > limit:
+        #         print (f'Principal can be at most {limit}')
+        #     elif principalNum >= 0 and principalNum <= limit:
+        #         return principalNum
+        # except ValueError:    
+        #     try:
+        #         principalNum = float(principalInput)
+        #         if principalNum > limit:
+        #             print(f' Principal can be at most {limit}.')
+        #         if principalNum < limit:
+        #             print ('Principal must be specified in dollars and cents.')
+        #     except ValueError:
+        #         print('Please enter a number')
                      
 print(getPrincipal(650000))
     
