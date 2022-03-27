@@ -69,34 +69,33 @@ def getPrincipal(limit):
         if principalInput[0] == '$':
             principalInput = principalInput.replace('$','')
         
-        if not isinstance(limit, (int,float)):
-            raise TypeError ('getPrincipal(limit): number must be numeric')
-        if principalInput < 0:
-            print ('You must enter a nonnegative number.')
-        if principalInput > limit:
-            print (f'Principal can not be more than {limit}.')
-        #if principalInput != (f'{:.2f}'):
-            #print ('Please enter number with 2 decimal places.')
-        elif principalNum >= 0 and principalNum <= limit:
-            return principalNum
+        try:
+            principalNum = int(principalInput)
+            if principalNum < 0:
+                print ('You must enter a nonnegative number')
+            elif principalNum > limit:
+                print (f'Principal can be at most {limit}')
+            elif principalNum >= 0 and principalNum <= limit:
+                return float(principalNum)
         
-        # try:
-        #     principalNum = int(principalInput)
-        #     if principalNum < 0:
-        #         print ('You must enter a nonnegative number')
-        #     elif principalNum > limit:
-        #         print (f'Principal can be at most {limit}')
-        #     elif principalNum >= 0 and principalNum <= limit:
-        #         return principalNum
-        # except ValueError:    
-        #     try:
-        #         principalNum = float(principalInput)
-        #         if principalNum > limit:
-        #             print(f' Principal can be at most {limit}.')
-        #         if principalNum < limit:
-        #             print ('Principal must be specified in dollars and cents.')
-        #     except ValueError:
-        #         print('Please enter a number')
+        except ValueError:    
+            
+            try:
+                principalNum = float(principalInput)
+                
+                principlaNumString = str(principalNum).split('.')
+                if len(principlaNumString[-1]) != 2:
+                    print('Enter only two decimal places')
+                
+                elif principalNum > limit:
+                    print(f' Principal can be at most {limit}.')
+                elif principalNum < 0:
+                    print('You must enter a nonnegative number')
+                elif principalNum >= 0 and principalNum <= limit:
+                    return float(principalNum)
+                
+            except ValueError:
+                print('Please enter a number')
                      
 print(getPrincipal(650000))
     
