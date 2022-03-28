@@ -96,6 +96,11 @@ def getPrincipal(limit):
                 
             except ValueError:
                 print('Please enter a number')
-                     
-print(getPrincipal(650000))
+
+def computeBalance(principal, rate):
+    balance = principal + (principal *  rate)
+    return balance
+# print(getRate([2,5,8,7]))                     
+# print(getPrincipal(650000))
+# print(computeBalance(principal, rate))
     
